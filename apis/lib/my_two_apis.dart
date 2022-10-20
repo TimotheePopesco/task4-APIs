@@ -1,20 +1,27 @@
 import 'package:apis/models.dart/details_model.dart';
-import 'package:apis/screens/beers_screen.dart';
+import 'package:apis/screens/beers_ale_screen.dart';
+import 'package:apis/screens/beers_stouts_screen.dart';
 import 'package:apis/screens/recipes_screen.dart';
 
 final List<DetailsModel> links = [
   DetailsModel(
-      title: "Beers",
-      link: "https://api.sampleapis.com/avatar/info",
+      title: "Beers Ale",
+      link: "https://api.sampleapis.com/beers/ale",
       screen: const BeersScreen(
-          title: "Beers", apiLink: "https://api.sampleapis.com/avatar/info")),
+          title: "Beers Ale", apiLink: "https://api.sampleapis.com/beers/ale")),
+
+  DetailsModel(
+      title: "Beers Stouts",
+      link: "https://api.sampleapis.com/beers/stouts",
+      screen: const BeersScreen(
+          title: "Beers Stouts", apiLink: "https://api.sampleapis.com/beers/stouts")),
   
   DetailsModel(
       title: "Recipes",
-      link: "https://api.sampleapis.com/baseball/hitsSingleSeason",
+      link: "https://api.sampleapis.com/recipes/recipes",
       screen: const RecipesScreen(
         title: "Recipes",
-        apiLink: "https://api.sampleapis.com/baseball/hitsSingleSeason",
+        apiLink: "https://api.sampleapis.com/recipes/recipes",
       )),
 
 ];

@@ -2,17 +2,17 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:apis/models.dart/recipes_model.dart';
+import 'package:apis/models.dart/beers_stouts_model.dart';
 
-class RecipesScreen extends StatefulWidget {
-  const RecipesScreen({super.key, this.title = '', this.apiLink = ''});
+class BeersstoutsScreen extends StatefulWidget {
+  const BeersstoutsScreen({super.key, this.title = '', this.apiLink = ''});
   final String title;
   final String apiLink;
   @override
-  State<RecipesScreen> createState() => _RecipesScreenState();
+  State<BeersstoutsScreen> createState() => _BeersstoutsScreenState();
 }
 
-class _RecipesScreenState extends State<RecipesScreen> {
+class _BeersstoutsScreenState extends State<BeersstoutsScreen> {
   bool _isLoading = false;
 
   @override
@@ -21,7 +21,7 @@ class _RecipesScreenState extends State<RecipesScreen> {
     _callApi(widget.apiLink);
   }
 
-  List<recipes>? RecipesHistoryList = [];
+  List<beersstouts>? BeersstoutsHistoryList = [];
   // List<Rating>? RatingList = [];
   _callApi(apiLink) async {
     try {
@@ -33,8 +33,8 @@ class _RecipesScreenState extends State<RecipesScreen> {
 
       Iterable I = json.decode(response.body);
 
-      RecipesHistoryList =
-          List<recipes>.from(I.map((model) => recipes.fromJson(model)));
+      BeersstoutsHistoryList =
+          List<beersstouts>.from(I.map((model) => beersstouts.fromJson(model)));
     } catch (e) {
       debugPrint(e.toString());
     } finally {
@@ -54,17 +54,17 @@ class _RecipesScreenState extends State<RecipesScreen> {
                 child: CircularProgressIndicator(),
               )
             : ListView.builder(
-                itemCount: RecipesHistoryList!.length,
+                itemCount: BeersstoutsHistoryList!.length,
                 itemBuilder: (context, index) {
                   return Container(
                     padding: const EdgeInsets.all(10),
                     margin: const EdgeInsets.all(10),
                     color: Color.fromARGB(255, 176, 168, 168),
                     child: Column(children: [
-                      Text('${RecipesHistoryList![index].title}'),
+                      Text('${BeersstoutsHistoryList![index].name}'),
                       // Image.network('${BeersHistoryList![index].image}'),
-                      Text('${RecipesHistoryList![index].description}'),
-                      Text('${RecipesHistoryList![index].cuisine}'),
+                      Text('${BeersstoutsHistoryList![index].rating!.average}'),
+                      Text('${BeersstoutsHistoryList![index].rating!.reviews}'),
                     ]),
                   );
                 }));
