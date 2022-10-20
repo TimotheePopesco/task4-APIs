@@ -13,7 +13,7 @@ final List<DetailsModel> links = [
   DetailsModel(
       title: "Beers Stouts",
       link: "https://api.sampleapis.com/beers/stouts",
-      screen: const BeersScreen(
+      screen: const BeersstoutsScreen(
           title: "Beers Stouts", apiLink: "https://api.sampleapis.com/beers/stouts")),
   
   DetailsModel(

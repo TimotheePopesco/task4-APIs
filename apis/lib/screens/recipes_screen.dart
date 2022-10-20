@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:apis/models.dart/recipes_model.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class RecipesScreen extends StatefulWidget {
   const RecipesScreen({super.key, this.title = '', this.apiLink = ''});
@@ -21,7 +22,7 @@ class _RecipesScreenState extends State<RecipesScreen> {
     _callApi(widget.apiLink);
   }
 
-  List<recipes>? RecipesHistoryList = [];
+  List<recipess>? RecipesHistoryList = [];
   // List<Rating>? RatingList = [];
   _callApi(apiLink) async {
     try {
@@ -34,7 +35,7 @@ class _RecipesScreenState extends State<RecipesScreen> {
       Iterable I = json.decode(response.body);
 
       RecipesHistoryList =
-          List<recipes>.from(I.map((model) => recipes.fromJson(model)));
+          List<recipess>.from(I.map((model) => recipess.fromJson(model)));
     } catch (e) {
       debugPrint(e.toString());
     } finally {
@@ -59,12 +60,21 @@ class _RecipesScreenState extends State<RecipesScreen> {
                   return Container(
                     padding: const EdgeInsets.all(10),
                     margin: const EdgeInsets.all(10),
-                    color: Color.fromARGB(255, 176, 168, 168),
+                    color: Color.fromARGB(125, 10, 10, 120),
+                    
+
                     child: Column(children: [
-                      Text('${RecipesHistoryList![index].title}'),
-                      // Image.network('${BeersHistoryList![index].image}'),
-                      Text('${RecipesHistoryList![index].description}'),
-                      Text('${RecipesHistoryList![index].cuisine}'),
+                      Text('${RecipesHistoryList![index].title}',
+                      ),
+                      
+                      Text('${RecipesHistoryList![index].course} - ${RecipesHistoryList![index].cuisine} - ${RecipesHistoryList![index].mainIngredient} - ${RecipesHistoryList![index].tags}\n\n'),
+                      Image.network('${RecipesHistoryList![index].photoUrl}'),
+                      Text('${RecipesHistoryList![index].description}\n\n'),
+                      Text('PrepTime : ${RecipesHistoryList![index].prepTime} - CookTime : ${RecipesHistoryList![index].cookTime} - TotalTime : ${RecipesHistoryList![index].totalTime} - Servings : ${RecipesHistoryList![index].servings}\n\n'),
+                      Text('${RecipesHistoryList![index].ingredients}\n\n'),
+                      Text('${RecipesHistoryList![index].directions}\n\n'),
+                      Text('link for the website of the recipe : ${RecipesHistoryList![index].source}'),
+                      
                     ]),
                   );
                 }));

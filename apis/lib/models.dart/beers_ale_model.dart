@@ -12,7 +12,7 @@ class beers {
     name = json['name'];
     rating =
         json['rating'] != null ? new Rating.fromJson(json['rating']) : null;
-    image = json['image'];
+    image = json['image'] ;
     id = json['id'];
   }
 

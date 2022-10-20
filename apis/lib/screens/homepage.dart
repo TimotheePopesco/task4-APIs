@@ -21,6 +21,7 @@ class _MyHomePageState extends State<MyHomePage> {
           itemCount: links.length,
           itemBuilder: (context, index) {
             return Card(
+              color: Color.fromARGB(80, 20, 20, 180),
               elevation: 10,
               child: ListTile(
                 onTap: () {

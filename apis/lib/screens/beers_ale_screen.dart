@@ -49,7 +49,9 @@ class _BeersScreenState extends State<BeersScreen> {
         appBar: AppBar(
           title: Text(widget.title),
         ),
+        
         body: _isLoading
+        
             ? Center(
                 child: CircularProgressIndicator(),
               )
@@ -59,12 +61,12 @@ class _BeersScreenState extends State<BeersScreen> {
                   return Container(
                     padding: const EdgeInsets.all(10),
                     margin: const EdgeInsets.all(10),
-                    color: Color.fromARGB(255, 176, 168, 168),
+                    color: Color.fromARGB(255,242,142,28),
                     child: Column(children: [
-                      Text('${BeersHistoryList![index].name}'),
-                      // Image.network('${BeersHistoryList![index].image}'),
-                      Text('${BeersHistoryList![index].rating!.average}'),
-                      Text('${BeersHistoryList![index].rating!.reviews}'),
+                      Text('${BeersHistoryList![index].name} - ${BeersHistoryList![index].price}\n\n'),
+                      Image.network('${BeersHistoryList![index].image}'),
+                      
+                      Text('Reviews ${BeersHistoryList![index].rating!.reviews} - ${BeersHistoryList![index].rating!.average}/5' ),
                     ]),
                   );
                 }));
